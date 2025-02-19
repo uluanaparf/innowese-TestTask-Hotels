@@ -1,13 +1,13 @@
 package com.testtask.innowise.mapper;
 
-import com.testtask.innowise.dto.AddresDto;
-import com.testtask.innowise.model.Addres;
+import com.testtask.innowise.dto.AddressDto;
+import com.testtask.innowise.model.Address;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
-public interface AddresMapper {
+public interface AddressMapper {
 
-    AddresDto toDto(Addres addres);
+    AddressDto toDto(Address address);
 
-    Addres toEntity(AddresDto addresDto);
+    Address toEntity(AddressDto addressDto);
 }

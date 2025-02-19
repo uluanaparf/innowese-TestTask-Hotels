@@ -4,7 +4,7 @@ public class AddressDto {
     private String houseNumber;
     private String street;
     private String city;
-    private String county;
+    private String country;
     private String postCode;
 
     public String getHouseNumber() {
@@ -31,12 +31,12 @@ public class AddressDto {
         this.city = city;
     }
 
-    public String getCounty() {
-        return county;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getPostCode() {

@@ -6,10 +6,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <!-- Create tables -->
+
     <changeSet id="1" author="author">
         <createTable tableName="hotels">
-            <column name="id" type="int">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
@@ -17,28 +17,28 @@
             </column>
             <column name="description" type="varchar(255)"/>
             <column name="brand" type="varchar(255)"/>
-            <column name="address_id" type="int"/>
-            <column name="contacts_id" type="int"/>
-            <column name="arrival_time_id" type="int"/>
+            <column name="address_id" type="bigint"/>
+            <column name="contacts_id" type="Long"/>
+            <column name="arrival_time_id" type="Long"/>
         </createTable>
     </changeSet>
 
     <changeSet id="2" author="author">
         <createTable tableName="addresses">
-            <column name="id" type="int">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="house_number" type="int"/>
+            <column name="house_number" type="varchar(255)"/>
             <column name="street" type="varchar(255)"/>
             <column name="city" type="varchar(255)"/>
-            <column name="county" type="varchar(255)"/>
+            <column name="country" type="varchar(255)"/>
             <column name="post_code" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
     <changeSet id="3" author="author">
         <createTable tableName="contacts">
-            <column name="id" type="int">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="phone" type="varchar(255)"/>
@@ -48,7 +48,7 @@
 
     <changeSet id="4" author="author">
         <createTable tableName="arrival_times">
-            <column name="id" type="int">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="check_in" type="varchar(5)"/>
@@ -58,7 +58,7 @@
 
     <changeSet id="5" author="author">
         <createTable tableName="amenities">
-            <column name="id" type="int">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="name" type="varchar(255)">
@@ -70,12 +70,11 @@
     <changeSet id="6" author="author">
         <createTable tableName="hotel_amenities">
             <column name="hotel_id" type="int"/>
-            <column name="amenity_id" type="int"/>
-            <constraints primaryKey="true" unique="true"/>
+            <column name="amenity_id" type="bigint"/>
         </createTable>
     </changeSet>
 
-    <!-- Foreign keys -->
+
     <changeSet id="7" author="author">
         <addForeignKeyConstraint
                 baseTableName="hotels" baseColumnNames="address_id"
