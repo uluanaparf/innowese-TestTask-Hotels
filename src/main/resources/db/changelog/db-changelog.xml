@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Create tables -->
+    <changeSet id="1" author="author">
+        <createTable tableName="hotels">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="brand" type="varchar(255)"/>
+            <column name="address_id" type="int"/>
+            <column name="contacts_id" type="int"/>
+            <column name="arrival_time_id" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="author">
+        <createTable tableName="addresses">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="house_number" type="int"/>
+            <column name="street" type="varchar(255)"/>
+            <column name="city" type="varchar(255)"/>
+            <column name="county" type="varchar(255)"/>
+            <column name="post_code" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="author">
+        <createTable tableName="contacts">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="author">
+        <createTable tableName="arrival_times">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="check_in" type="varchar(5)"/>
+            <column name="check_out" type="varchar(5)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="author">
+        <createTable tableName="amenities">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="author">
+        <createTable tableName="hotel_amenities">
+            <column name="hotel_id" type="int"/>
+            <column name="amenity_id" type="int"/>
+            <constraints primaryKey="true" unique="true"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Foreign keys -->
+    <changeSet id="7" author="author">
+        <addForeignKeyConstraint
+                baseTableName="hotels" baseColumnNames="address_id"
+                referencedTableName="addresses" referencedColumnNames="id"
+                constraintName="fk_hotels_address"/>
+    </changeSet>
+
+    <changeSet id="8" author="author">
+        <addForeignKeyConstraint
+                baseTableName="hotels" baseColumnNames="contacts_id"
+                referencedTableName="contacts" referencedColumnNames="id"
+                constraintName="fk_hotels_contacts"/>
+    </changeSet>
+
+    <changeSet id="9" author="author">
+        <addForeignKeyConstraint
+                baseTableName="hotels" baseColumnNames="arrival_time_id"
+                referencedTableName="arrival_times" referencedColumnNames="id"
+                constraintName="fk_hotels_arrival_time"/>
+    </changeSet>
+</databaseChangeLog>
